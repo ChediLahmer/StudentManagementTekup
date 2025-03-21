@@ -1,9 +1,7 @@
 package com.student.studentmanagement.Domain.Entities;
 
 import com.student.studentmanagement.Domain.Enums.UserType;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.Set;
 import java.util.UUID;
@@ -12,6 +10,11 @@ public class Teacher extends User{
     private String Grade;
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TeacherCourse> teacherCourses;
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<TeacherAbsence> teacherAbsences;
+    @OneToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
     public Teacher(String grade) {
         Grade = grade;
     }

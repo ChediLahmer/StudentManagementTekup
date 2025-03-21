@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>11.4.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>6.2.5.Final</version>
@@ -34,7 +39,11 @@
             <artifactId>jakarta.persistence-api</artifactId>
             <version>3.1.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.hibernate.tool</groupId>
+            <artifactId>hibernate-tools-orm</artifactId>
+            <version>6.4.0.Final</version> <!-- Use the version compatible with your Hibernate version -->
+        </dependency>
         <!-- Hibernate Annotations -->
         <dependency>
             <groupId>org.hibernate.common</groupId>

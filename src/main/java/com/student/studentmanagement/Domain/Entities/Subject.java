@@ -13,4 +13,6 @@ public class Subject {
     private String subjectName;
     @OneToMany(mappedBy = "subject" , cascade = CascadeType.ALL , orphanRemoval = true)
     private Set<Level> levels;
+    @OneToOne(mappedBy = "subject" , cascade = CascadeType.ALL , orphanRemoval = true)
+    public Teacher teacher;
 }

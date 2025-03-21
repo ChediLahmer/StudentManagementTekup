@@ -17,10 +17,19 @@
         <!-- Hibernate Settings -->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Important: set to "validate" instead of "none" or "update" -->
+        <!-- This will validate that your schema matches your entities but won't modify the database -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <!-- Connection Pooling (Optional) -->
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+
+        <!-- Scan for entity classes in the specified package -->
+        <property name="hibernate.archive.autodetection">class</property>
+        <mapping package="com.student.studentmanagement.Domain.Entities"/>
     </session-factory>
 </hibernate-configuration>

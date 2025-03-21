@@ -1,9 +1,10 @@
 package com.student.studentmanagement.Domain.Entities;
 
 import com.student.studentmanagement.Domain.Enums.UserType;
+import jakarta.persistence.Entity;
 
 import java.util.UUID;
-
+@Entity
 public class Admin extends User{
     private String Role;
 

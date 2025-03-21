@@ -12,4 +12,7 @@ public class Level {
     private String levelName;
     @OneToMany(mappedBy = "level" , cascade = CascadeType.ALL , orphanRemoval = true)
     private Set<Course> courses;
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 }
