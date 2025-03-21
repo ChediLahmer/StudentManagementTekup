@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"student_id", "startDate", "endDate"})
+        @UniqueConstraint(columnNames = {"student_id", "From", "To"})
 })
 public class StudentAbsence {
     @Id

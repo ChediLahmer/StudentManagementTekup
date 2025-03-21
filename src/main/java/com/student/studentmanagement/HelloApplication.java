@@ -32,7 +32,7 @@ public class HelloApplication extends Application {
 
         // Execute the migration script using JDBC
         executeMigrationScript(scriptPath);
-
+        
         // Continue with your application
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
