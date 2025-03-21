@@ -19,6 +19,6 @@ public class TeacherAbsence {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    private LocalDateTime From;
-    private LocalDateTime To;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
 }

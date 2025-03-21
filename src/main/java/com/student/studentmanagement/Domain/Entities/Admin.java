@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 
 import java.util.UUID;
 @Entity
-public class Admin extends User{
+public class Admin extends EndUser {
     private String Role;
 
     public Admin(String role) {

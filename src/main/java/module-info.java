@@ -5,6 +5,7 @@ module com.student.studentmanagement {
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
     requires org.hibernate.orm.ant;
+    requires flyway.core;
     opens com.student.studentmanagement to javafx.fxml;
     exports com.student.studentmanagement;
 }

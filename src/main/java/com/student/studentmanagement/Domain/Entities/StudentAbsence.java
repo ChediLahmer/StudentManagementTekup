@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"student_id", "From", "To"})
+        @UniqueConstraint(columnNames = {"student_id", "startDateTime", "endDateTime"})
 })
 public class StudentAbsence {
     @Id
@@ -23,6 +23,6 @@ public class StudentAbsence {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    private LocalDateTime From;
-    private LocalDateTime To;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
 }

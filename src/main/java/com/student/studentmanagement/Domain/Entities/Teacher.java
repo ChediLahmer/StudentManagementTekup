@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 @Entity
-public class Teacher extends User{
+public class Teacher extends EndUser {
     private String Grade;
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TeacherCourse> teacherCourses;

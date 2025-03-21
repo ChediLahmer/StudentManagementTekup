@@ -1,13 +1,13 @@
 package com.student.studentmanagement.Infrastructure;
 
 
+import com.student.studentmanagement.Domain.Entities.EndUser;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.boot.Metadata;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
 
-import java.io.File;
 import java.util.EnumSet;
 
 public class SchemaExportUtil {
@@ -25,7 +25,7 @@ public class SchemaExportUtil {
             // Add all entity classes from your package
             // This will scan your entity classes automatically
             metadataSources.addPackage("com.student.studentmanagement.Domain.Entities");
-            metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.User.class);
+            metadataSources.addAnnotatedClass(EndUser.class);
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Student.class);
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Subject.class);
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Mark.class);

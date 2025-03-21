@@ -6,7 +6,7 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "user_type")
-public class User {
+public class EndUser {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
@@ -65,9 +65,9 @@ public class User {
         this.emailAddress = emailAddress;
     }
 
-    public User(){}
+    public EndUser(){}
 
-    public User(UUID userId, String lastName, String name, String emailAddress, String password, UserType userType) {
+    public EndUser(UUID userId, String lastName, String name, String emailAddress, String password, UserType userType) {
         this.userId = userId;
         this.lastName = lastName;
         this.name = name;
