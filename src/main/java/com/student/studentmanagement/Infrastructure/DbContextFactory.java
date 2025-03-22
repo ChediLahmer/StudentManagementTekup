@@ -12,7 +12,6 @@ public class DbContextFactory {
         return dbContext;
     }
 
-    // For testing: allows injecting a mock implementation
     public static void setDbContext(IDbContext mockDbContext) {
         dbContext = mockDbContext;
     }

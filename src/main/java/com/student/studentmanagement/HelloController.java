@@ -20,7 +20,6 @@ public class HelloController {
     }
 
     public void setLevels(List<Level> levels) {
-        // Make sure the listViewLevels is not null
         if (listViewLevels != null) {
             for (Level level : levels) {
                 listViewLevels.getItems().add(level.getLevelName());  // Assuming Level has getLevelName()

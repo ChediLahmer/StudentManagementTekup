@@ -23,7 +23,6 @@ public class Mark {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    // Default constructor needed by JPA
     public Mark() {
     }
 

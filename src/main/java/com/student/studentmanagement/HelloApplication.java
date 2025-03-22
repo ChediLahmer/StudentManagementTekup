@@ -61,15 +61,12 @@ public class HelloApplication extends Application {
     }
     private void executeMigrationScript(String scriptPath) {
         try {
-            // Before migrating, filter out problematic statements from the initial migration
             String sql = new String(Files.readAllBytes(Paths.get(scriptPath)));
             String filteredSql = filterInitialMigrationScript(sql);
             Files.write(Paths.get(scriptPath), filteredSql.getBytes());
 
-            // Get the absolute path of the migrations directory
             String migrationsPath = new File("src/main/resources/db/migration").getAbsolutePath();
 
-            // Now use Flyway to apply the migration with classpath location
             Flyway flyway = Flyway.configure()
                     .dataSource(
                             "jdbc:sqlserver://localhost:1433;databaseName=StudentManagement;encrypt=true;trustServerCertificate=true",
@@ -79,7 +76,6 @@ public class HelloApplication extends Application {
                     .locations("filesystem:" + migrationsPath)
                     .load();
 
-            // Execute the migration
             flyway.migrate();
             System.out.println("✅ Flyway migration executed successfully");
         } catch (Exception e) {
@@ -88,15 +84,12 @@ public class HelloApplication extends Application {
         }
     }
 
-    // Helper method to filter out problematic statements from the initial migration
     private String filterInitialMigrationScript(String sql) {
         StringBuilder filtered = new StringBuilder();
 
-        // Split by semicolon and process each statement
         for (String statement : sql.split(";")) {
             statement = statement.trim();
 
-            // Skip statements that drop constraints or alter tables for non-existent objects
             if (statement.isEmpty() ||
                     statement.toLowerCase().contains("drop constraint") ||
                     (statement.toLowerCase().contains("alter table") &&

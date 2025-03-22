@@ -9,12 +9,10 @@ public class ApplicationDbContext implements IDbContext {
     private static SessionFactory sessionFactory;
     private static ApplicationDbContext instance;
 
-    // Private constructor for singleton pattern
     private ApplicationDbContext() {
         try {
             Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
 
-            // Add all entity classes
             configuration.addAnnotatedClass(EndUser.class);
             configuration.addAnnotatedClass(Student.class);
             configuration.addAnnotatedClass(Teacher.class);
@@ -36,7 +34,6 @@ public class ApplicationDbContext implements IDbContext {
         }
     }
 
-    // Singleton pattern implementation
     public static synchronized ApplicationDbContext getInstance() {
         if (instance == null) {
             instance = new ApplicationDbContext();

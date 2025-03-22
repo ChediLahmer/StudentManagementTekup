@@ -21,7 +21,6 @@ public class Teacher extends EndUser {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-    // Default constructor needed by JPA
     public Teacher() {
     }
 
@@ -34,7 +33,6 @@ public class Teacher extends EndUser {
         this.grade = grade;
     }
 
-    // Getters and setters
     public String getGrade() {
         return grade;
     }

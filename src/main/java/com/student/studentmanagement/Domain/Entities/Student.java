@@ -20,7 +20,6 @@ public class Student extends EndUser {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<StudentAbsence> studentAbsences = new HashSet<>();
 
-    // Default constructor needed by JPA
     public Student() {
     }
 
@@ -33,7 +32,6 @@ public class Student extends EndUser {
         this.enrollmentNumber = enrollmentNumber;
     }
 
-    // Getters and setters
     public String getEnrollmentNumber() {
         return enrollmentNumber;
     }

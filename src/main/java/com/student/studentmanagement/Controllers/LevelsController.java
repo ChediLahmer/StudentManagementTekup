@@ -41,13 +41,11 @@ public class LevelsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Set up the table columns
         levelName.setCellValueFactory(cellData -> {
             Level level = cellData.getValue();
             return new javafx.beans.property.SimpleStringProperty(level.getLevelName());
         });
 
-        // Make levelName column editable
         levelTable.setEditable(true);
         levelName.setCellFactory(TextFieldTableCell.forTableColumn());
         levelName.setOnEditCommit(event -> {
@@ -56,26 +54,20 @@ public class LevelsController implements Initializable {
             updateLevel(level.getLevelId(), level.getLevelName());
         });
 
-        // Add update button column
         addUpdateButtonColumn();
 
-        // Add delete button column
         addDeleteButtonColumn();
 
-        // Initialize the table with data
         initializeLevelTable();
     }
 
     private void initializeLevelTable() {
         try {
-            // Get data from repository
             List<Level> levels = levelsRepo.getAll();
 
-            // Populate the observable list
             levelsList.clear();
             levelsList.addAll(levels);
 
-            // Set the items to the table
             levelTable.setItems(levelsList);
         } catch (Exception e) {
             System.err.println("Error initializing level table: " + e.getMessage());
@@ -144,17 +136,11 @@ public class LevelsController implements Initializable {
         levelDelete.setCellFactory(cellFactory);
     }
 
-    // Method to update level
     public void updateLevel(UUID id, String name) {
         System.out.println("Updating level with ID: " + id + ", new name: " + name);
-        // Here you would call your repository method to update the level in the database
-        // levelsRepo.update(id, name);
     }
 
-    // Method to delete level
     public void deleteLevel(UUID id, String name) {
         System.out.println("Deleting level with ID: " + id + ", name: " + name);
-        // Here you would call your repository method to delete the level from the database
-        // levelsRepo.delete(id);
     }
 }

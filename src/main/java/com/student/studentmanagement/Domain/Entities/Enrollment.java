@@ -25,11 +25,9 @@ public class Enrollment {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    // Default constructor needed by JPA
     public Enrollment() {
     }
 
-    // Getters and setters
     public UUID getEnrollmentId() {
         return enrollmentId;
     }

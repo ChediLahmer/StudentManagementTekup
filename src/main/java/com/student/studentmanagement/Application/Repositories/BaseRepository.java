@@ -17,7 +17,6 @@ public abstract class BaseRepository<T> {
         this.entityClass = entityClass;
     }
 
-    // Execute operations with transaction management
     protected <R> R executeInTransaction(Function<Session, R> operation) {
         Session session = dbContext.openSession();
         Transaction transaction = null;
@@ -36,7 +35,6 @@ public abstract class BaseRepository<T> {
         }
     }
 
-    // Common CRUD operations
     public T getById(Object id) {
         return executeInTransaction(session -> session.get(entityClass, id));
     }

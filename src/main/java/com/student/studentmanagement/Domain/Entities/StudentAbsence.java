@@ -25,11 +25,9 @@ public class StudentAbsence {
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
 
-    // Default constructor needed by JPA
     public StudentAbsence() {
     }
 
-    // Getters and setters
     public UUID getAbsenceId() {
         return absenceId;
     }

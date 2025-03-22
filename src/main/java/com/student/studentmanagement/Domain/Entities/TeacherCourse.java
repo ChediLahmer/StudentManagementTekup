@@ -25,11 +25,9 @@ public class TeacherCourse {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    // Default constructor needed by JPA
     public TeacherCourse() {
     }
 
-    // Getters and setters
     public UUID getTeacherCourseId() {
         return teacherCourseId;
     }

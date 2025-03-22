@@ -14,17 +14,13 @@ import java.util.EnumSet;
 public class SchemaExportUtil {
 
     public static void generateDDL(String outputFilePath) {
-        // Create service registry
         var serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure("hibernate.cfg.xml")
                 .build();
 
         try {
-            // Create metadata sources and metadata
             MetadataSources metadataSources = new MetadataSources(serviceRegistry);
 
-            // Add all entity classes from your package
-            // This will scan your entity classes automatically
             metadataSources.addPackage("com.student.studentmanagement.Domain.Entities");
             metadataSources.addAnnotatedClass(EndUser.class);
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Student.class);
@@ -42,13 +38,11 @@ public class SchemaExportUtil {
 
             Metadata metadata = metadataSources.buildMetadata();
 
-            // Configure the schema export
             SchemaExport schemaExport = new SchemaExport();
             schemaExport.setOutputFile(outputFilePath);
             schemaExport.setDelimiter(";");
             schemaExport.setFormat(true);
 
-            // Generate the schema creation script
             schemaExport.create(EnumSet.of(TargetType.SCRIPT), metadata);
 
             System.out.println("✅ Schema script generated successfully at: " + outputFilePath);

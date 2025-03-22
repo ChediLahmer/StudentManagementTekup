@@ -26,11 +26,9 @@ public class EvaluationType {
     @OneToMany(mappedBy = "evaluationType", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Mark> marks = new HashSet<>();
 
-    // Default constructor needed by JPA
     public EvaluationType() {
     }
 
-    // Getters and setters
     public UUID getEvaluationId() {
         return evaluationId;
     }

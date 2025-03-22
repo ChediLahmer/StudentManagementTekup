@@ -25,7 +25,6 @@ public class Level {
     )
     private Set<Subject> subjects = new HashSet<>();
 
-    // Default constructor needed by JPA
     public Level() {
     }
 
@@ -58,7 +57,6 @@ public class Level {
         return subjects;
     }
 
-    // Helper methods for bidirectional relationships
     public void addCourse(Course course) {
         courses.add(course);
         course.setLevel(this);

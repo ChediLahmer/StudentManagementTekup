@@ -30,11 +30,9 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TeacherAbsence> teacherAbsences = new HashSet<>();
 
-    // Default constructor needed by JPA
     public Course() {
     }
 
-    // Getters and setters
     public UUID getCourseId() {
         return courseId;
     }

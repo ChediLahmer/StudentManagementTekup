@@ -23,11 +23,9 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EvaluationType> evaluationTypes = new HashSet<>();
 
-    // Default constructor needed by JPA
     public Subject() {
     }
 
-    // Getters and setters
     public UUID getSubjectId() {
         return subjectId;
     }
