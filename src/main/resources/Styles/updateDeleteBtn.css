@@ -1,0 +1,13 @@
+/* Style for Update Button */
+.update-button {
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Style for Delete Button */
+.delete-button {
+    -fx-background-color: #f44336; /* Red */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

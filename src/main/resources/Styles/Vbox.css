@@ -1,0 +1,13 @@
+.vbox {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 10;
+}
+.button {
+    -fx-font-size: 14px;
+    -fx-pref-width: 120px;
+    -fx-background-color: transparent;
+    -fx-border-radius: 5px;
+}
+.button:hover {
+    -fx-background-color: #ddd;
+}
