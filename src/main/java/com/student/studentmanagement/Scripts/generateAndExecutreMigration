@@ -8,3 +8,19 @@
         SchemaExportUtil.generateDDL(scriptPath);
 
         executeMigrationScript(scriptPath);*/
+
+
+  /*LevelsRepo repo = new LevelsRepo();
+         List<Level> levels = repo.getAll();*/
+
+         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+         Parent root = fxmlLoader.load();
+
+         // Get the controller and set levels
+         /*HelloController controller = fxmlLoader.getController();
+         controller.setLevels(levels);*/
+
+         Scene scene = new Scene(root, 640, 357);
+         stage.setTitle("Hello!");
+         stage.setScene(scene);
+         stage.show();

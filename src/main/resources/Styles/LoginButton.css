@@ -1,0 +1,44 @@
+/* Login Button Styles */
+.login-button {
+    -fx-background-color: #b19cd9; /* Light purple */
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+    -fx-padding: 8px 16px; /* Smaller padding for a smaller button */
+    -fx-font-size: 14px; /* Smaller text size */
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 1, 1);
+    -fx-transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.login-button:hover {
+    -fx-background-color: #9b89c1; /* Slightly darker purple for hover */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Active/Pressed Effect */
+.login-button:pressed {
+    -fx-background-color: #8a75a3; /* Darker purple for active state */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+/* Focused Effect */
+.login-button:focused {
+    -fx-background-color: #b19cd9; /* Light purple when focused */
+    -fx-effect: inner-shadow(gaussian, rgba(173, 127, 224, 0.5), 5, 0, 0, 0);
+}
+
+/* Styling the Text Inside the Button */
+.login-button .text {
+    -fx-font-weight: bold; /* Make the text bold */
+    -fx-font-family: 'Arial', sans-serif; /* Change font family */
+    -fx-text-fill: white; /* Text color */
+}
+
+/* Optionally, you can add a smaller font size if needed */
+.login-button .text {
+    -fx-font-size: 14px; /* Adjust text size */
+}
