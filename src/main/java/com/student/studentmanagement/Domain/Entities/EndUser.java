@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "user_type")
 public class EndUser {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -14,7 +13,7 @@ public class EndUser {
     private String lastName;
     private String emailAddress;
     private String password;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private UserType userType;
 
     public UUID getUserId() {

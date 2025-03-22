@@ -2,6 +2,7 @@ package com.student.studentmanagement.Infrastructure;
 
 
 import com.student.studentmanagement.Domain.Entities.EndUser;
+import com.student.studentmanagement.Domain.Entities.Enrollment;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.boot.Metadata;
@@ -36,7 +37,7 @@ public class SchemaExportUtil {
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.StudentAbsence.class);
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Admin.class);
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Course.class);
-            metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Enrollement.class);
+            metadataSources.addAnnotatedClass(Enrollment.class);
             metadataSources.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Level.class);
 
             Metadata metadata = metadataSources.buildMetadata();

@@ -3,6 +3,7 @@ package com.student.studentmanagement.Domain.Entities;
 import com.student.studentmanagement.Domain.Enums.EvalType;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -14,11 +15,47 @@ public class EvaluationType {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID evaluationId;
+
     @ManyToOne
     @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
-    @Enumerated(EnumType.ORDINAL)
+
+    @Enumerated(EnumType.STRING)  // Changed to STRING for better maintainability
     private EvalType evalType;
-    @ManyToMany
-    private Set<Mark> marks;
+
+    @OneToMany(mappedBy = "evaluationType", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Mark> marks = new HashSet<>();
+
+    // Default constructor needed by JPA
+    public EvaluationType() {
+    }
+
+    // Getters and setters
+    public UUID getEvaluationId() {
+        return evaluationId;
+    }
+
+    public void setEvaluationId(UUID evaluationId) {
+        this.evaluationId = evaluationId;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public EvalType getEvalType() {
+        return evalType;
+    }
+
+    public void setEvalType(EvalType evalType) {
+        this.evalType = evalType;
+    }
+
+    public Set<Mark> getMarks() {
+        return marks;
+    }
 }

@@ -7,16 +7,16 @@ import java.util.UUID;
 
 @Entity
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"teacher_id", "course_id", "startDate", "endDate"})
+        @UniqueConstraint(columnNames = {"student_id", "course_id", "startDate", "endDate"})
 })
-public class TeacherCourse {
+public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID teacherCourseId;  // Changed from enrollmentId for clarity
+    private UUID enrollmentId;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id", nullable = false)
-    private Teacher teacher;
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
@@ -26,24 +26,24 @@ public class TeacherCourse {
     private LocalDate endDate;
 
     // Default constructor needed by JPA
-    public TeacherCourse() {
+    public Enrollment() {
     }
 
     // Getters and setters
-    public UUID getTeacherCourseId() {
-        return teacherCourseId;
+    public UUID getEnrollmentId() {
+        return enrollmentId;
     }
 
-    public void setTeacherCourseId(UUID teacherCourseId) {
-        this.teacherCourseId = teacherCourseId;
+    public void setEnrollmentId(UUID enrollmentId) {
+        this.enrollmentId = enrollmentId;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Course getCourse() {

@@ -1,19 +1,30 @@
 package com.student.studentmanagement.Domain.Entities;
 
 import com.student.studentmanagement.Domain.Enums.UserType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
 
 import java.util.UUID;
 @Entity
 public class Admin extends EndUser {
-    private String Role;
+    private String role;
+    public Admin() {}
 
     public Admin(String role) {
-        Role = role;
+        this.role = role;
     }
 
     public Admin(UUID userId, String lastName, String name, String emailAddress, String password, UserType userType, String role) {
         super(userId, lastName, name, emailAddress, password, userType);
-        Role = role;
+        this.role = role;
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

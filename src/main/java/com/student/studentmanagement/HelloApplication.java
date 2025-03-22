@@ -1,5 +1,6 @@
 package com.student.studentmanagement;
 
+import com.student.studentmanagement.Domain.Entities.Level;
 import com.student.studentmanagement.Infrastructure.ApplicationDbContext;
 import com.student.studentmanagement.Infrastructure.SchemaExportUtil;
 import javafx.application.Application;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.flywaydb.core.Flyway;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,32 +21,43 @@ import java.time.format.DateTimeFormatter;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        // Generate migration scripts based on entity classes
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        /*String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         String resourcesPath = "src/main/resources";
         String migrationsDir = resourcesPath + "/db/migration";
 
-        // Create migrations directory if it doesn't exist
         Files.createDirectories(Paths.get(migrationsDir));
 
-        // Generate schema script with a versioned filename
-        // Using standard Flyway naming format: V[version]__[description].sql
         String scriptPath = migrationsDir + "/V" + timestamp + "__Auto_Generated_Schema.sql";
         SchemaExportUtil.generateDDL(scriptPath);
 
-        // Execute the migration script using JDBC
-        executeMigrationScript(scriptPath);
+        executeMigrationScript(scriptPath);*/
 
-        // Continue with your application
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Session session = ApplicationDbContext.getSession();
         if(session != null){
-            stage.setTitle("Connected Successfully");
+            Level level = new Level("ING1");
+            Transaction transaction = null;
+            try{
+                transaction = session.beginTransaction();
+                session.save(level);
+                transaction.commit();
+                System.out.println("✅ Level saved successfully!");
+            }catch (Exception e){
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+                System.err.println("❌ Error saving Level: " + e.getMessage());
+            }finally {
+                session.close();
+            }
         } else {
             stage.setTitle("Hello!");
         }
 
+
+
+        ApplicationDbContext.shutdown();
         stage.setScene(scene);
         stage.show();
     }
