@@ -1,0 +1,16 @@
+if(session != null){
+            Level level = new Level("ING1");
+            Transaction transaction = null;
+            try{
+                transaction = session.beginTransaction();
+                session.save(level);
+                transaction.commit();
+                System.out.println("✅ Level saved successfully!");
+            }catch (Exception e){
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+                System.err.println("❌ Error saving Level: " + e.getMessage());
+            }finally {
+                session.close();
+            }

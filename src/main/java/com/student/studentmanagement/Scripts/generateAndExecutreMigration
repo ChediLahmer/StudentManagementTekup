@@ -1,0 +1,10 @@
+/*String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        String resourcesPath = "src/main/resources";
+        String migrationsDir = resourcesPath + "/db/migration";
+
+        Files.createDirectories(Paths.get(migrationsDir));
+
+        String scriptPath = migrationsDir + "/V" + timestamp + "__Auto_Generated_Schema.sql";
+        SchemaExportUtil.generateDDL(scriptPath);
+
+        executeMigrationScript(scriptPath);*/

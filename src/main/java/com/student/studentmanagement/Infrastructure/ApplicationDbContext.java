@@ -1,32 +1,34 @@
 package com.student.studentmanagement.Infrastructure;
-import com.student.studentmanagement.Domain.Entities.EndUser;
-import com.student.studentmanagement.Domain.Entities.Enrollment;
-import com.student.studentmanagement.Domain.Entities.Student;
-import com.student.studentmanagement.Domain.Entities.Teacher;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.SessionFactory;
-import org.hibernate.Session;
-public class ApplicationDbContext {
-    private static SessionFactory sessionFactory;
 
-    static {
+import com.student.studentmanagement.Domain.Entities.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class ApplicationDbContext implements IDbContext {
+    private static SessionFactory sessionFactory;
+    private static ApplicationDbContext instance;
+
+    // Private constructor for singleton pattern
+    private ApplicationDbContext() {
         try {
             Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-            configuration.addPackage("com.student.studentmanagement.Domain.Entities");
+
+            // Add all entity classes
             configuration.addAnnotatedClass(EndUser.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Student.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Teacher.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Admin.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Subject.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Mark.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.TeacherAbsence.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.TeacherCourse.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.EvaluationType.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.StudentAbsence.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Course.class);
+            configuration.addAnnotatedClass(Student.class);
+            configuration.addAnnotatedClass(Teacher.class);
+            configuration.addAnnotatedClass(Admin.class);
+            configuration.addAnnotatedClass(Subject.class);
+            configuration.addAnnotatedClass(Mark.class);
+            configuration.addAnnotatedClass(TeacherAbsence.class);
+            configuration.addAnnotatedClass(TeacherCourse.class);
+            configuration.addAnnotatedClass(EvaluationType.class);
+            configuration.addAnnotatedClass(StudentAbsence.class);
+            configuration.addAnnotatedClass(Course.class);
             configuration.addAnnotatedClass(Enrollment.class);
-            configuration.addAnnotatedClass(com.student.studentmanagement.Domain.Entities.Level.class);
+            configuration.addAnnotatedClass(Level.class);
+
             sessionFactory = configuration.buildSessionFactory();
         } catch (Exception e) {
             System.err.println("❌ Error initializing Hibernate SessionFactory: " + e.getMessage());
@@ -34,14 +36,29 @@ public class ApplicationDbContext {
         }
     }
 
-    // Open a new database session
-    public static Session getSession() {
+    // Singleton pattern implementation
+    public static synchronized ApplicationDbContext getInstance() {
+        if (instance == null) {
+            instance = new ApplicationDbContext();
+        }
+        return instance;
+    }
+
+    @Override
+    public Session openSession() {
         return sessionFactory.openSession();
     }
 
-    // Close the SessionFactory when application exits
-    public static void shutdown() {
-        if (sessionFactory != null) {
+    @Override
+    public void closeSession(Session session) {
+        if (session != null && session.isOpen()) {
+            session.close();
+        }
+    }
+
+    @Override
+    public void shutdown() {
+        if (sessionFactory != null && !sessionFactory.isClosed()) {
             sessionFactory.close();
         }
     }

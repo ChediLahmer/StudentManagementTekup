@@ -66,8 +66,7 @@ public class EndUser {
 
     public EndUser(){}
 
-    public EndUser(UUID userId, String lastName, String name, String emailAddress, String password, UserType userType) {
-        this.userId = userId;
+    public EndUser(String lastName, String name, String emailAddress, String password, UserType userType) {
         this.lastName = lastName;
         this.name = name;
         this.emailAddress = emailAddress;

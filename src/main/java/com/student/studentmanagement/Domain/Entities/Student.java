@@ -28,8 +28,8 @@ public class Student extends EndUser {
         this.enrollmentNumber = enrollmentNumber;
     }
 
-    public Student(UUID userId, String lastName, String name, String emailAddress, String password, UserType userType, String enrollmentNumber) {
-        super(userId, lastName, name, emailAddress, password, userType);
+    public Student(String lastName, String name, String emailAddress, String password, UserType userType, String enrollmentNumber) {
+        super(lastName, name, emailAddress, password, userType);
         this.enrollmentNumber = enrollmentNumber;
     }
 

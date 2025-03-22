@@ -1,0 +1,62 @@
+if(session != null){
+            boolean createStudent = true;
+            boolean createTeacher = true;
+            boolean createAdmin = true;
+            if(createStudent){
+                Student student= new Student("Boussetta","Chaima","chaim.Bousseta@gmai.com","Ingenieur@Tekup", UserType.STUDENT, "#1");
+                Transaction transaction = null;
+                try{
+                    transaction = session.beginTransaction();
+                    session.save(student);
+                    transaction.commit();
+                    System.out.println("✅ Level saved successfully!");
+                }catch (Exception e){
+                    if (transaction != null) {
+                        transaction.rollback();
+                    }
+                    System.err.println("❌ Error saving Level: " + e.getMessage());
+                }finally {
+                    session.close();
+                }
+            }
+
+            stage.setTitle("Hello!");
+        }
+
+
+        if(createTeacher){
+                        Teacher student= new Teacher("Sebri","Imed","imed.sebri@gmail.com","Admin@Tekup", UserType.ADMIN, "Director");
+                        Transaction transaction = null;
+                        try{
+                            transaction = session.beginTransaction();
+                            session.save(student);
+                            transaction.commit();
+                            System.out.println("✅ Teacher saved successfully!");
+                        }catch (Exception e){
+                            if (transaction != null) {
+                                transaction.rollback();
+                            }
+                            System.err.println("❌ Error saving Level: " + e.getMessage());
+                        }finally {
+                            session.close();
+                        }
+                    }
+                    
+                    
+                    if(createAdmin){
+                                    Admin student= new Admin("Sebri","Imed","imed.sebri@gmail.com","Admin@Tekup", UserType.ADMIN, "Director");
+                                    Transaction transaction = null;
+                                    try{
+                                        transaction = session.beginTransaction();
+                                        session.save(student);
+                                        transaction.commit();
+                                        System.out.println("✅ Teacher saved successfully!");
+                                    }catch (Exception e){
+                                        if (transaction != null) {
+                                            transaction.rollback();
+                                        }
+                                        System.err.println("❌ Error saving Level: " + e.getMessage());
+                                    }finally {
+                                        session.close();
+                                    }
+                                }

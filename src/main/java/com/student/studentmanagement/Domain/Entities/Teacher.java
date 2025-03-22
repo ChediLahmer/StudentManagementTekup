@@ -29,8 +29,8 @@ public class Teacher extends EndUser {
         this.grade = grade;
     }
 
-    public Teacher(UUID userId, String lastName, String name, String emailAddress, String password, UserType userType, String grade) {
-        super(userId, lastName, name, emailAddress, password, userType);
+    public Teacher(String lastName, String name, String emailAddress, String password, UserType userType, String grade) {
+        super(lastName, name, emailAddress, password, userType);
         this.grade = grade;
     }
 
