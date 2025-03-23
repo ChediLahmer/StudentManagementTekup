@@ -5,10 +5,14 @@ import com.student.studentmanagement.Domain.Entities.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -41,6 +45,7 @@ public class LevelsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        newLevelBtn.setOnAction(event -> openModalDialog());
         levelName.setCellValueFactory(cellData -> {
             Level level = cellData.getValue();
             return new javafx.beans.property.SimpleStringProperty(level.getLevelName());
@@ -60,7 +65,20 @@ public class LevelsController implements Initializable {
 
         initializeLevelTable();
     }
+    private void openModalDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/student/studentmanagement/createLevelModal.fxml"));
+            Stage modalStage = new Stage();
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            modalStage.setScene(new Scene(loader.load()));
 
+            createLevelController controller = loader.getController();
+            modalStage.setTitle("create level");
+            modalStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     private void initializeLevelTable() {
         try {
             List<Level> levels = levelsRepo.getAll();

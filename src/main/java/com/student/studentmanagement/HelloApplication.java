@@ -1,5 +1,6 @@
 package com.student.studentmanagement;
 
+import com.student.studentmanagement.Application.Repositories.AdminRepo;
 import com.student.studentmanagement.Application.Repositories.LevelsRepo;
 import com.student.studentmanagement.Domain.Entities.Admin;
 import com.student.studentmanagement.Domain.Entities.Level;
@@ -32,6 +33,8 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
+            /*AdminRepo adminRepo = new AdminRepo();
+            adminRepo.createAdmin("Sebri","Imed","imed.sebri@gmail.com","Admin@Tekup", "Director");*/
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
