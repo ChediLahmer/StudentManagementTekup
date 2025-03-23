@@ -1,5 +1,6 @@
 package com.student.studentmanagement.Controllers;
 
+import com.student.studentmanagement.Application.Repositories.LevelsRepo;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,7 +26,8 @@ public class createLevelController implements Initializable {
         cancelBtn.setOnAction(event -> handleCancel());
     }
     private void handleSave() {
-        System.out.println("Saved: " + levelNameInput.getText());
+        LevelsRepo levelRepo = new LevelsRepo();
+        levelRepo.createLevel(levelNameInput.getText());
         closeDialog();
     }
 

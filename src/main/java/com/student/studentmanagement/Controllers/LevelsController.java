@@ -56,7 +56,7 @@ public class LevelsController implements Initializable {
         levelName.setOnEditCommit(event -> {
             Level level = event.getRowValue();
             level.setLevelName(event.getNewValue());
-            updateLevel(level.getLevelId(), level.getLevelName());
+            updateLevel(level);
         });
 
         addUpdateButtonColumn();
@@ -103,7 +103,7 @@ public class LevelsController implements Initializable {
                     {
                         btn.setOnAction(event -> {
                             Level level = getTableView().getItems().get(getIndex());
-                            updateLevel(level.getLevelId(), level.getLevelName());
+                            updateLevel(level);
                         });
                     }
 
@@ -133,7 +133,7 @@ public class LevelsController implements Initializable {
                     {
                         btn.setOnAction(event -> {
                             Level level = getTableView().getItems().get(getIndex());
-                            deleteLevel(level.getLevelId(), level.getLevelName());
+                            deleteLevel(level);
                             levelsList.remove(level);
                         });
                     }
@@ -154,11 +154,11 @@ public class LevelsController implements Initializable {
         levelDelete.setCellFactory(cellFactory);
     }
 
-    public void updateLevel(UUID id, String name) {
-        System.out.println("Updating level with ID: " + id + ", new name: " + name);
+    public void updateLevel(Level level) {
+        levelsRepo.updateLevel(level);
     }
 
-    public void deleteLevel(UUID id, String name) {
-        System.out.println("Deleting level with ID: " + id + ", name: " + name);
+    public void deleteLevel(Level level) {
+        levelsRepo.deleteLevel(level);
     }
 }
