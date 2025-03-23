@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"teacher_id", "course_id", "startDateTime", "endDateTime"})
+        @UniqueConstraint(columnNames = {"teacher_id", "startDateTime", "endDateTime"})
 })
 public class TeacherAbsence {
     @Id
@@ -18,9 +18,6 @@ public class TeacherAbsence {
     @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher teacher;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id", nullable = false)
-    private Course course;
 
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
@@ -44,13 +41,6 @@ public class TeacherAbsence {
         this.teacher = teacher;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
 
     public LocalDateTime getStartDateTime() {
         return startDateTime;

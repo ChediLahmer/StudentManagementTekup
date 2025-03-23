@@ -20,11 +20,9 @@ public class ApplicationDbContext implements IDbContext {
             configuration.addAnnotatedClass(Subject.class);
             configuration.addAnnotatedClass(Mark.class);
             configuration.addAnnotatedClass(TeacherAbsence.class);
-            configuration.addAnnotatedClass(TeacherCourse.class);
             configuration.addAnnotatedClass(EvaluationType.class);
             configuration.addAnnotatedClass(StudentAbsence.class);
-            configuration.addAnnotatedClass(Course.class);
-            configuration.addAnnotatedClass(Enrollment.class);
+
             configuration.addAnnotatedClass(Level.class);
 
             sessionFactory = configuration.buildSessionFactory();

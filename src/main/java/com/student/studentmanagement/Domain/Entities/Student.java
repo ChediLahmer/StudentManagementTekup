@@ -3,6 +3,7 @@ package com.student.studentmanagement.Domain.Entities;
 import com.student.studentmanagement.Domain.Enums.UserType;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -11,14 +12,18 @@ import java.util.UUID;
 public class Student extends EndUser {
     private String enrollmentNumber;  // Fixed spelling
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Enrollment> enrollments = new HashSet<>();
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Mark> marks = new HashSet<>();
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<StudentAbsence> studentAbsences = new HashSet<>();
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+    @ManyToOne
+    @JoinColumn(name = "level_id")
+    private Level level;
 
     public Student() {
     }
@@ -40,9 +45,6 @@ public class Student extends EndUser {
         this.enrollmentNumber = enrollmentNumber;
     }
 
-    public Set<Enrollment> getEnrollments() {
-        return enrollments;
-    }
 
     public Set<Mark> getMarks() {
         return marks;
@@ -52,16 +54,8 @@ public class Student extends EndUser {
         return studentAbsences;
     }
 
-    // Helper methods for bidirectional relationships
-    public void addEnrollment(Enrollment enrollment) {
-        enrollments.add(enrollment);
-        enrollment.setStudent(this);
-    }
 
-    public void removeEnrollment(Enrollment enrollment) {
-        enrollments.remove(enrollment);
-        enrollment.setStudent(null);
-    }
+
 
     public void addMark(Mark mark) {
         marks.add(mark);
@@ -71,5 +65,21 @@ public class Student extends EndUser {
     public void removeMark(Mark mark) {
         marks.remove(mark);
         mark.setStudent(null);
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }

@@ -11,8 +11,6 @@ import java.util.UUID;
 public class Teacher extends EndUser {
     private String grade;  // Changed from Grade to follow Java naming conventions
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<TeacherCourse> teacherCourses = new HashSet<>();
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TeacherAbsence> teacherAbsences = new HashSet<>();
@@ -41,9 +39,6 @@ public class Teacher extends EndUser {
         this.grade = grade;
     }
 
-    public Set<TeacherCourse> getTeacherCourses() {
-        return teacherCourses;
-    }
 
     public Set<TeacherAbsence> getTeacherAbsences() {
         return teacherAbsences;

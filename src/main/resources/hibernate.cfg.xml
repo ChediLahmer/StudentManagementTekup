@@ -35,15 +35,12 @@
         <mapping class="com.student.studentmanagement.Domain.Entities.EndUser"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.Student"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.Teacher"/>
-        <mapping class="com.student.studentmanagement.Domain.Entities.Course"/>
-        <mapping class="com.student.studentmanagement.Domain.Entities.Enrollment"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.EvaluationType"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.Level"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.Mark"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.StudentAbsence"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.Subject"/>
         <mapping class="com.student.studentmanagement.Domain.Entities.TeacherAbsence"/>
-        <mapping class="com.student.studentmanagement.Domain.Entities.TeacherCourse"/>
     </session-factory>
 
 </hibernate-configuration>

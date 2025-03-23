@@ -13,9 +13,8 @@ public class Level {
     private UUID levelId;
 
     private String levelName;
-
-    @OneToMany(mappedBy = "level", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Course> courses = new HashSet<>();
+    @OneToMany(mappedBy = "level")
+    private Set<Student> students;
 
     @ManyToMany
     @JoinTable(
@@ -31,7 +30,18 @@ public class Level {
     public Level(String name) {
         this.levelName = name;
     }
-
+    public Set<Student> getStudents(){
+        return this.students;
+    }
+    public void setStudents(Set<Student> students){
+        this.students = students;
+    }
+    public void removeStudent(Student student){
+        this.students.remove(student);
+    }
+    public void adddStudent(Student student){
+        this.students.add(student);
+    }
     // Getters and setters
     public UUID getLevelId() {
         return levelId;
@@ -49,23 +59,14 @@ public class Level {
         this.levelName = levelName;
     }
 
-    public Set<Course> getCourses() {
-        return courses;
-    }
+
 
     public Set<Subject> getSubjects() {
         return subjects;
     }
 
-    public void addCourse(Course course) {
-        courses.add(course);
-        course.setLevel(this);
-    }
 
-    public void removeCourse(Course course) {
-        courses.remove(course);
-        course.setLevel(null);
-    }
+
 
     public void addSubject(Subject subject) {
         subjects.add(subject);
