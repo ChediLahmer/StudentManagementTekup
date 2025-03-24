@@ -4,9 +4,13 @@ import com.student.studentmanagement.Application.Repositories.LevelsRepo;
 import com.student.studentmanagement.Domain.Entities.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,6 +32,8 @@ public class LevelsController implements Initializable {
     private Button teacherBtn;
     @FXML
     private Button courseBtn;
+    @FXML
+    private Button levelBtn;
     @FXML
     private Button subjectBtn;
     @FXML
@@ -46,6 +53,16 @@ public class LevelsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         newLevelBtn.setOnAction(event -> openModalDialog());
+        subjectBtn.setOnAction(new EventHandler<ActionEvent >() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Subject(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         levelName.setCellValueFactory(cellData -> {
             Level level = cellData.getValue();
             return new javafx.beans.property.SimpleStringProperty(level.getLevelName());
@@ -154,7 +171,19 @@ public class LevelsController implements Initializable {
 
         levelDelete.setCellFactory(cellFactory);
     }
-
+    @FXML
+    void Subject(ActionEvent event) throws IOException{
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/student/studentmanagement/Subjects.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void updateLevel(Level level) {
         levelsRepo.updateLevel(level);
     }

@@ -16,8 +16,8 @@ public class Admin extends EndUser {
         this.role = role;
     }
 
-    public Admin(String lastName, String name, String emailAddress, String password, UserType userType, String role) {
-        super(lastName, name, emailAddress, password, userType);
+    public Admin(String lastName, String name, String emailAddress, String password, String role) {
+        super(lastName, name, emailAddress, password, UserType.ADMIN);
         this.role = role;
     }
     public String getRole() {

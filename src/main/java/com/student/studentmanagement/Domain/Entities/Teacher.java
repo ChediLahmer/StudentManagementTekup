@@ -15,7 +15,7 @@ public class Teacher extends EndUser {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TeacherAbsence> teacherAbsences = new HashSet<>();
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
@@ -26,8 +26,8 @@ public class Teacher extends EndUser {
         this.grade = grade;
     }
 
-    public Teacher(String lastName, String name, String emailAddress, String password, UserType userType, String grade) {
-        super(lastName, name, emailAddress, password, userType);
+    public Teacher(String lastName, String name, String emailAddress, String password, String grade) {
+        super(lastName, name, emailAddress, password, UserType.TEACHER);
         this.grade = grade;
     }
 

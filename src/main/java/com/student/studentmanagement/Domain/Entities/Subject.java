@@ -13,8 +13,7 @@ public class Subject {
     private UUID subjectId;
 
     private String subjectName;
-
-    @ManyToMany(mappedBy = "subjects")
+    @ManyToMany(mappedBy = "subjects" ,  cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Level> levels = new HashSet<>();
 
     @OneToOne(mappedBy = "subject")
@@ -22,6 +21,31 @@ public class Subject {
 
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EvaluationType> evaluationTypes = new HashSet<>();
+
+    public Subject(Set<EvaluationType> evaluationTypes, Set<Level> levels, String subjectName) {
+        this.evaluationTypes = evaluationTypes;
+        this.levels = levels;
+        this.subjectName = subjectName;
+    }
+    public Subject( Set<Level> levels, String subjectName) {
+        this.levels = levels;
+        this.subjectName = subjectName;
+    }
+    public Subject(String subjectName) {
+        this.subjectName = subjectName;
+    }
+    public Subject( Set<Level> levels,Teacher teacher ,String subjectName) {
+        this.levels = levels;
+        this.subjectName = subjectName;
+        this.teacher = teacher;
+    }
+    public Subject(Set<EvaluationType> evaluationTypes, Teacher teacher, Set<Level> levels, String subjectName) {
+        this.evaluationTypes = evaluationTypes;
+        this.teacher = teacher;
+        this.levels = levels;
+        this.subjectName = subjectName;
+    }
+
 
     public Subject() {
     }
@@ -57,4 +81,5 @@ public class Subject {
     public Set<EvaluationType> getEvaluationTypes() {
         return evaluationTypes;
     }
+
 }

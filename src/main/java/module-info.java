@@ -12,4 +12,5 @@ module com.student.studentmanagement {
     opens com.student.studentmanagement.Controllers to javafx.fxml;
     exports com.student.studentmanagement;
     exports com.student.studentmanagement.Controllers to javafx.fxml;
+    opens com.student.studentmanagement.Application.Dtos to javafx.base;
 }

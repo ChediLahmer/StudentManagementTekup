@@ -16,17 +16,17 @@ public class Level {
     @OneToMany(mappedBy = "level")
     private Set<Student> students;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.EAGER)
     @JoinTable(
             name = "level_subject",
             joinColumns = @JoinColumn(name = "level_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id")
+
     )
     private Set<Subject> subjects = new HashSet<>();
 
     public Level() {
     }
-
     public Level(String name) {
         this.levelName = name;
     }
@@ -64,7 +64,9 @@ public class Level {
     public Set<Subject> getSubjects() {
         return subjects;
     }
-
+    public void setSubjects(Set<Subject> subjects){
+        this.setSubjects(subjects);
+    }
 
 
 

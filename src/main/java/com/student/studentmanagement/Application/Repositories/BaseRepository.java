@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 
 public abstract class BaseRepository<T> {
@@ -35,7 +36,7 @@ public abstract class BaseRepository<T> {
         }
     }
 
-    public T getById(Object id) {
+    public T getById(UUID id) {
         return executeInTransaction(session -> session.get(entityClass, id));
     }
 
@@ -44,10 +45,11 @@ public abstract class BaseRepository<T> {
                 session.createQuery("from " + entityClass.getSimpleName(), entityClass).list());
     }
 
-    public void save(T entity) {
-        executeInTransaction(session -> {
-            session.persist(entity);
-            return null;
+    public T save(T entity) {
+        return executeInTransaction(session -> {
+            session.saveOrUpdate(entity);
+            session.flush();
+            return entity;
         });
     }
 

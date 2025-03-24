@@ -1,21 +1,20 @@
 package com.student.studentmanagement.Application.Repositories;
 
 import com.student.studentmanagement.Domain.Entities.Admin;
-import com.student.studentmanagement.Domain.Entities.EndUser;
-import com.student.studentmanagement.Domain.Entities.Level;
-import com.student.studentmanagement.Domain.Enums.UserType;
-import com.student.studentmanagement.Domain.Helpers.PasswordUtil;
+import com.student.studentmanagement.Domain.Entities.Subject;
+import com.student.studentmanagement.Domain.Entities.Teacher;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
-public class AdminRepo extends BaseRepository<Admin> {
-
-
-    public AdminRepo() {
-        super(Admin.class);
+public class TeachersRepo extends BaseRepository<Teacher>{
+    public TeachersRepo(){
+        super(Teacher.class);
     }
-
-    public boolean createAdmin(String lastName, String name, String emailAddress, String password, String role) {
+    public List<Teacher> getAll(){
+       return super.getAll();
+    }
+    public boolean createTeacher(String lastName, String name, String emailAddress, String password, String grade) {
         if (lastName == null || lastName.trim().isEmpty()) {
             throw new IllegalArgumentException("Last name cannot be null or empty.");
         }
@@ -28,14 +27,19 @@ public class AdminRepo extends BaseRepository<Admin> {
         if (password == null || password.trim().isEmpty()) {
             throw new IllegalArgumentException("Password cannot be null or empty.");
         }
-        if (role == null || role.trim().isEmpty()) {
+        if (grade == null || grade.trim().isEmpty()) {
             throw new IllegalArgumentException("Role cannot be null or empty.");
         }
-        Admin admin= new Admin(lastName,name,emailAddress,password ,role);
+        Teacher teacher= new Teacher(lastName,name,emailAddress,password ,grade);
         return executeInTransaction(session -> {
-            session.save(admin);
+            session.save(teacher);
             return true;
         });
+    }
+    public void addSubject(Teacher teacher , Subject subject){
+        Teacher toUpdateTeacher = super.getById(teacher.getUserId());
+        toUpdateTeacher.setSubject(subject);
+        super.save(toUpdateTeacher);
     }
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";

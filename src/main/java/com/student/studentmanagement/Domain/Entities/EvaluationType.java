@@ -28,7 +28,13 @@ public class EvaluationType {
 
     public EvaluationType() {
     }
-
+    public EvaluationType(Subject subject ,EvalType evalType) {
+        this.subject = subject;
+        this.evalType = evalType;
+    }
+    public EvaluationType(EvalType evalType) {
+        this.evalType = evalType;
+    }
     public UUID getEvaluationId() {
         return evaluationId;
     }
