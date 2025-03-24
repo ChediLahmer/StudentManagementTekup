@@ -75,6 +75,7 @@ public class LevelsController implements Initializable {
             createLevelController controller = loader.getController();
             modalStage.setTitle("create level");
             modalStage.showAndWait();
+            initializeLevelTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
